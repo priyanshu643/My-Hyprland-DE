@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ==================================================================================
-# My Hyprland DE - Complete Installation Script (v3 - Final)
+# My Hyprland DE - Complete Installation Script (v4 - Final)
 # Author: Priyanshu
 # This script installs and configures the full desktop environment.
 # ==================================================================================
@@ -18,7 +18,7 @@ if ! command -v yay &> /dev/null; then
     echo "AUR helper 'yay' not found. Please install it first."
     exit 1
 fi
-if ! command -v git &> /dev/null; then
+if ! command -v git &> /dev/null;    then
     echo "Git not found. Please install it first with 'sudo pacman -S git'."
     exit 1
 fi
@@ -29,7 +29,6 @@ sudo pacman -Syu --noconfirm
 
 # --- Define Packages to Install ---
 # Using arrays is more robust than multi-line commands with backslashes.
-# REMOVED the 'local' keyword from the next two lines.
 packages_pacman=(
     # Core Desktop & Utilities
     hyprland waybar wofi kitty dolphin pavucontrol blueman
@@ -42,7 +41,7 @@ packages_pacman=(
     # Screen Recording
     obs-studio xdg-desktop-portal-hyprland luajit
     # Engineering & Electronics
-    kicad kicad-library kicad-library-3d kicad-footprints
+    kicad # The main KiCad package now includes all libraries and footprints
 )
 
 packages_aur=(
@@ -60,39 +59,4 @@ sudo pacman -S --noconfirm "${packages_pacman[@]}"
 echo "[TASK] Installing all packages from the AUR..."
 yay -S --noconfirm "${packages_aur[@]}"
 
-# --- Copy Configuration Files (Dotfiles) ---
-echo "[TASK] Copying configuration files..."
-# Create a backup of any existing configs
-mkdir -p ~/.config_backup
-echo "Backing up existing configs to ~/.config_backup/"
-mv ~/.config/hypr ~/.config_backup/ 2>/dev/null || true
-mv ~/.config/waybar ~/.config_backup/ 2>/dev/null || true
-mv ~/.config/kitty ~/.config_backup/ 2>/dev/null || true
-mv ~/.config/wofi ~/.config_backup/ 2>/dev/null || true
-mv ~/.config/mimeapps.list ~/.config_backup/ 2>/dev/null || true
-
-# Copy new configs from the repository
-echo "Copying new dotfiles..."
-cp -r hypr ~/.config/
-cp -r waybar ~/.config/
-cp -r kitty ~/.config/
-cp -r wofi ~/.config/
-cp mimeapps.list ~/.config/
-
-# --- Enable All System Services ---
-echo "[TASK] Enabling system services..."
-sudo systemctl enable --now bluetooth.service
-echo "Bluetooth service enabled."
-
-# --- Apply the GRUB Theme ---
-echo "[TASK] Applying the Fallout GRUB theme..."
-# Set the theme in the GRUB config file
-sudo sed -i 's|^#GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/fallout-grub-theme-git/theme.txt"|' /etc/default/grub
-# Regenerate the GRUB configuration
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-echo "GRUB theme has been set."
-
-echo "======================================================"
-echo "    INSTALLATION COMPLETE!"
-echo "    Please reboot your system for all changes to apply."
-echo "======================================================"
+# --- Copy Configuration Files (
