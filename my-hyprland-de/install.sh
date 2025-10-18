@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ==================================================================================
-# My Hyprland DE - Complete Installation Script
+# My Hyprland DE - Complete Installation Script (v2 - Robust Version)
 # Author: Priyanshu
 # This script installs and configures the full desktop environment.
 # ==================================================================================
@@ -27,29 +27,37 @@ fi
 echo "[TASK] Updating system packages..."
 sudo pacman -Syu --noconfirm
 
-# --- Install All Main Packages from Official Repos ---
-echo "[TASK] Installing all main packages from official repositories..."
-sudo pacman -S --noconfirm \
+# --- Define Packages to Install ---
+# Using arrays is more robust than multi-line commands with backslashes
+local packages_pacman=(
     # Core Desktop & Utilities
-    hyprland waybar wofi kitty dolphin pavucontrol blueman \
+    hyprland waybar wofi kitty dolphin pavucontrol blueman
     # Theming & Fonts
-    kvantum qt5ct qt6ct ttf-firacode-nerd \
+    kvantum qt5ct qt6ct ttf-firacode-nerd
     # System & Services
-    bluez bluez-utils pipewire wireplumber xdg-utils desktop-file-utils \
+    bluez bluez-utils pipewire wireplumber xdg-utils desktop-file-utils
     # Screenshot & Media
-    grim slurp swappy mpv imv \
+    grim slurp swappy mpv imv
     # Screen Recording
-    obs-studio xdg-desktop-portal-hyprland luajit \
+    obs-studio xdg-desktop-portal-hyprland luajit
     # Engineering & Electronics
     kicad kicad-library kicad-library-3d kicad-footprints
+)
+
+local packages_aur=(
+    waypaper
+    arduino-legacy-1.8
+    fallout-grub-theme-git
+    google-chrome
+)
+
+# --- Install All Main Packages from Official Repos ---
+echo "[TASK] Installing all main packages from official repositories..."
+sudo pacman -S --noconfirm "${packages_pacman[@]}"
 
 # --- Install All AUR Packages ---
 echo "[TASK] Installing all packages from the AUR..."
-yay -S --noconfirm \
-    waypaper \
-    arduino-legacy-1.8 \
-    fallout-grub-theme-git \
-    google-chrome
+yay -S --noconfirm "${packages_aur[@]}"
 
 # --- Copy Configuration Files (Dotfiles) ---
 echo "[TASK] Copying configuration files..."
@@ -83,8 +91,8 @@ sudo sed -i 's|^#GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/fallout-grub-t
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 echo "GRUB theme has been set."
 
-
 echo "======================================================"
 echo "    INSTALLATION COMPLETE!"
 echo "    Please reboot your system for all changes to apply."
 echo "======================================================"
+
