@@ -1,0 +1,56 @@
+/* -----------------------------------------------------------------------------
+ * Main bar styling
+ * -------------------------------------------------------------------------- */
+* {
+    font-family: "FiraCode Nerd Font", FontAwesome, sans-serif;
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: transparent; /* For the glass/blur effect */
+    color: #cdd6f4;
+    border: none;
+}
+
+/* -----------------------------------------------------------------------------
+ * General Module styling
+ * -------------------------------------------------------------------------- */
+#workspaces,
+#window,
+#network,
+#battery,
+#clock {
+    padding: 0 10px;
+    margin: 5px 3px;
+    color: #cdd6f4;
+    background-color: rgba(49, 50, 68, 0.5);
+    border-radius: 8px;
+}
+
+/* -----------------------------------------------------------------------------
+ * Specific Module styling
+ * -------------------------------------------------------------------------- */
+
+/* Style for the workspace buttons (1, 2, 3...) */
+#workspaces button {
+    color: #cdd6f4; /* Color of inactive workspace buttons */
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0 5px;
+}
+
+#workspaces button:hover {
+    background-color: rgba(205, 214, 244, 0.1); /* Slight highlight on hover */
+}
+
+#workspaces button.focused {
+    color: #1e1e2e; /* Dark text for contrast */
+    background-color: #cba6f7; /* Mauve background for the focused workspace */
+}
+
+/* Style for critical battery level */
+#battery.critical:not(.charging) {
+    background-color: #f38ba8; /* Red background */
+    color: #1e1e2e;
+}

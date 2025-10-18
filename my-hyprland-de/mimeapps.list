@@ -1,0 +1,28 @@
+[Default Applications]
+# Image Mimetypes
+image/jpeg=imv.desktop
+image/jpg=imv.desktop
+image/png=imv.desktop
+image/gif=imv.desktop
+image/webp=imv.desktop
+
+# Video Mimetypes
+video/mp4=mpv.desktop
+video/x-matroska=mpv.desktop
+video/webm=mpv.desktop
+image/bmp=imv.desktop
+video/x-flv=mpv.desktop
+video/quicktime=mpv.desktop
+
+[Added Associations]
+# Image Mimetypes
+image/jpeg=imv.desktop;
+image/jpg=imv.desktop;
+image/png=imv.desktop;
+image/gif=imv.desktop;
+image/webp=imv.desktop;
+
+# Video Mimetypes
+video/mp4=mpv.desktop;
+video/x-matroska=mpv.desktop;
+video/webm=mpv.desktop;

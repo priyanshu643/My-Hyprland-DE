@@ -1,0 +1,56 @@
+{
+    // -------------------------------------------------------------------------
+    // Global configuration
+    // -------------------------------------------------------------------------
+    "layer": "top",
+    "position": "top",
+    "height": 18, // <-- REDUCED HEIGHT from 50 to 38
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["window"],
+    "modules-right": [
+        "network",
+        "battery",
+        "clock"
+    ],
+
+    // -------------------------------------------------------------------------
+    // Modules configuration
+    // -------------------------------------------------------------------------
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "persistent_workspaces": {
+            "*": 5 
+        }
+    },
+    
+    "window": {
+        "format": "🪟 {}",
+        "max-length": 35
+    },
+
+    "network": {
+        // This is a more reliable configuration for NetworkManager
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "tooltip-format-wifi": "{ifname} via {gwaddr} \n{ipaddr}/{cidr} 󰩠\n{frequency}MHz Frequency",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-disconnected": "Disconnected 󰤮",
+        "on-click": "foot nmtui", // <-- CHANGE 'foot' if you use a different terminal
+        "interval": 5 // Refresh every 5 seconds
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p\n%a %d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    }
+}
