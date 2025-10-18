@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ==================================================================================
-# My Hyprland DE - Complete Installation Script (v2 - Robust Version)
+# My Hyprland DE - Complete Installation Script (v3 - Final)
 # Author: Priyanshu
 # This script installs and configures the full desktop environment.
 # ==================================================================================
@@ -28,8 +28,9 @@ echo "[TASK] Updating system packages..."
 sudo pacman -Syu --noconfirm
 
 # --- Define Packages to Install ---
-# Using arrays is more robust than multi-line commands with backslashes
-local packages_pacman=(
+# Using arrays is more robust than multi-line commands with backslashes.
+# REMOVED the 'local' keyword from the next two lines.
+packages_pacman=(
     # Core Desktop & Utilities
     hyprland waybar wofi kitty dolphin pavucontrol blueman
     # Theming & Fonts
@@ -44,7 +45,7 @@ local packages_pacman=(
     kicad kicad-library kicad-library-3d kicad-footprints
 )
 
-local packages_aur=(
+packages_aur=(
     waypaper
     arduino-legacy-1.8
     fallout-grub-theme-git
@@ -95,4 +96,3 @@ echo "======================================================"
 echo "    INSTALLATION COMPLETE!"
 echo "    Please reboot your system for all changes to apply."
 echo "======================================================"
-
