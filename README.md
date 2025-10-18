@@ -57,7 +57,8 @@ After you have completed the base Arch install, rebooted, and logged in as a reg
 Once yay is installed, run the following single command to deploy the entire desktop environment:
 
 ```bash
-curl -sSL [https://raw.githubusercontent.com/priyanshu643/My-Hyprland-DE/main/install.sh](https://raw.githubusercontent.com/priyanshu643/My-Hyprland-DE/main/install.sh) | bash
+curl -sSL https://raw.githubusercontent.com/priyanshu643/My-Hyprland-DE/main/my-hyprland-de/install.sh | bash
+
 ```
 
 After the script finishes, it will prompt you to reboot your system. A reboot is required for all changes to take effect.
