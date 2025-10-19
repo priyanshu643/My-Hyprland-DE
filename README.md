@@ -50,18 +50,31 @@ Your pacstrap command should look something like this:
 
 - You do not need to install audio (pipewire) or Bluetooth (bluez) packages. The installation script will handle this automatically.
 
-### Step 2: Run the Installer Script
+#### Step 2: Run the Correct Installation Commands
 
-After you have completed the base Arch install, rebooted, and logged in as a regular user, you need to install an AUR helper like yay. You can find instructions here.
+Now, on the machine where you are trying to install your DE, follow the new instructions. If you've already run the script partway, that's okay. Just delete the folder if it exists (`rm -rf My-Hyprland-DE`) and start fresh.
 
-Once yay is installed, run the following single command to deploy the entire desktop environment:
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/priyanshu643/My-Hyprland-DE.git
+    ```
+2.  **Enter the directory:**
+    ```bash
+    cd My-Hyprland-DE/my-hyprland-de
+    ```
+3.  **Make the script executable:**
+    ```bash
+    chmod +x install.sh
+    ```
+4.  **Run the script:**
+    ```bash
+    ./install.sh
+    ```
 
-```bash
-curl -sSL https://raw.githubusercontent.com/priyanshu643/My-Hyprland-DE/main/my-hyprland-de/install.sh | bash
+Now, because you are running `./install.sh` from *inside* the project folder, it will be able to see the `hypr`, `waybar`, `kitty` folders right next to it, and the `cp` commands will succeed.
 
-```
+You've successfully evolved your project from a simple script to a full-fledged dotfiles repository. This is the standard and correct way to manage and share a setup like this!
 
-After the script finishes, it will prompt you to reboot your system. A reboot is required for all changes to take effect.
 
 ## ⌨️ Custom Keybindings
 
