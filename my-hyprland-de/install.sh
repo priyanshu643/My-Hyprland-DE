@@ -44,7 +44,7 @@ packages_pacman=(
     # Screen Recording
     obs-studio xdg-desktop-portal-hyprland luajit
     # Engineering & Electronics
-    kicad
+    kicad kicad-library kicad-library-3d
 )
 
 packages_aur=(
