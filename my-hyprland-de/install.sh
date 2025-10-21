@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ==================================================================================
-# My Hyprland DE - Complete Installation Script (v5 - Final)
+# My Hyprland DE - Complete Installation Script (v6 - Final)
 # Author: Priyanshu
 # This script installs and configures the full desktop environment.
 # ==================================================================================
@@ -31,6 +31,8 @@ sudo pacman -Syu --noconfirm
 packages_pacman=(
     # Core Desktop & Utilities
     hyprland waybar wofi kitty dolphin pavucontrol blueman
+    # System Monitors (NEWLY ADDED)
+    btop fastfetch
     # Theming & Fonts
     kvantum qt5ct qt6ct ttf-firacode-nerd
     # System & Services
@@ -85,7 +87,8 @@ echo "Bluetooth service enabled."
 
 # --- Apply the GRUB Theme ---
 echo "[TASK] Applying the Fallout GRUB theme..."
-sudo sed -i 's|^#GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/fallout-grub-theme-git/theme.txt"|' /etc/default/grub
+# This command now replaces the line whether it starts with '#' or not
+sudo sed -i 's|^#*GRUB_THEME=.*|GRUB_THEME="/usr/share/grub/themes/fallout-grub-theme-git/theme.txt"|' /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 echo "GRUB theme has been set."
 
