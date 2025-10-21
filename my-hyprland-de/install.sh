@@ -30,7 +30,7 @@ sudo pacman -Syu --noconfirm
 # --- Define Packages to Install ---
 packages_pacman=(
     # Core Desktop & Utilities
-    hyprland waybar wofi kitty dolphin pavucontrol blueman
+    hyprland waybar wofi kitty dolphin pavucontrol blueman hyprpaper
     # System Monitors (NEWLY ADDED)
     btop fastfetch
     # Theming & Fonts
